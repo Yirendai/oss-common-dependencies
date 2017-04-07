@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.yirendai.oss</groupId>
+        <artifactId>oss-common-dependencies</artifactId>
+        <version>1.0.8.OSS-SNAPSHOT</version>
+    </parent>
+    <artifactId>oss-common-dependencies-spring-boot-1.4.x</artifactId>
+    <name>oss-common-dependencies-spring-boot-1.4.x</name>
+    <packaging>pom</packaging>
+    <url>https://github.com/Yirendai/oss-common-dependencies/tree/master/oss-common-dependencies-spring-boot-1.4.x</url>
+
+    <modules>
+        <module>oss-common-dependencies-spring-boot-1.4.1.RELEASE</module>
+        <module>oss-common-dependencies-spring-boot-1.4.2.RELEASE</module>
+    </modules>
+
+    <properties>
+        <!-- org.springframework.boot:spring-boot-dependencies -->
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <jetty.version>9.3.11.v20160721</jetty.version>
+        <log4j2.version>2.6.2</log4j2.version>
+        <!-- io.spring.platform:platform-bom -->
+        <bouncycastle.version>1.54</bouncycastle.version>
+        <jackson.version>2.8.3</jackson.version>
+        <jackson1.version>1.9.13</jackson1.version>
+        <lombok.version>1.16.10</lombok.version>
+        <!-- org.springframework.cloud:spring-cloud-starter-parent -->
+        <!-- -->
+        <disruptor.version>3.3.4</disruptor.version>
+        <jetty-npn.version>8.1.2.v20120308</jetty-npn.version>
+        <jetty-orbit-jsp.version>2.2.0.v201112011158</jetty-orbit-jsp.version>
+
+        <gson-jodatime-serialisers.version>1.4.0</gson-jodatime-serialisers.version>
+
+        <!-- conflict: org.eclipse.jetty:jetty-annotations & com.netflix.governator:governator & com.jayway.jsonpath:json-path -->
+        <asm.version>5.0.1</asm.version>
+        <!-- conflict: hibernate-validator & io.springfox:springfox-swagger2 -->
+        <classmate.version>1.1.0</classmate.version>
+        <!-- conflict: spring-io-platform & orika-core -->
+        <javassist.version>3.20.0-GA</javassist.version>
+
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <!-- note:  commons-beanutils, commons-collections, commons-digester version -->
+        <commons-validator.version>1.5.1</commons-validator.version>
+        <!-- note: org.javassist:javassist version -->
+        <orika.version>1.4.2</orika.version>
+        <!-- note: cglib version -->
+        <p6spy.version>2.3.1</p6spy.version>
+        <!-- note: classmate version -->
+        <springfox-swagger.version>2.6.0</springfox-swagger.version>
+        <swagger.version>1.5.10</swagger.version>
+        <!-- note: hibernate version -->
+        <usertype.version>5.0.0.GA</usertype.version>
+        <!-- note: org.apache.kafka:kafka_2.11 com.101tec:zkclient version -->
+        <zookeeper.version>3.4.6</zookeeper.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>parameterized-version</id>
+            <activation>
+                <property>
+                    <name>!suppress-parameterized-version</name>
+                </property>
+            </activation>
+            <properties>
+                <!-- org.springframework.boot:spring-boot-dependencies -->
+                <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
+                <spring-data-releasetrain.version>Hopper-SR3</spring-data-releasetrain.version>
+                <!-- io.spring.platform:platform-bom -->
+                <spring-io-platform.version>Athens-RELEASE</spring-io-platform.version>
+                <!-- org.springframework.cloud:spring-cloud-starter-parent -->
+                <spring-cloud.version>Brixton.SR6</spring-cloud.version>
+            </properties>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.spring.platform</groupId>
+                        <artifactId>platform-bom</artifactId>
+                        <version>${spring-io-platform.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-dependencies</artifactId>
+                        <version>${spring-boot.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.data</groupId>
+                        <artifactId>spring-data-releasetrain</artifactId>
+                        <version>${spring-data-releasetrain.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-dependencies</artifactId>
+                        <version>${spring-cloud.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter</artifactId>
+                        <version>${spring-boot.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter-logging</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                        <version>${spring-boot.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-starter-tomcat</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>org.slf4j</groupId>
+                                <artifactId>log4j-over-slf4j</artifactId>
+                            </exclusion>
+                            <exclusion>
+                                <groupId>ch.qos.logback</groupId>
+                                <artifactId>logback-classic</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+
+                    <dependency><groupId>org.apache.commons</groupId><artifactId>commons-collections4</artifactId><version>${commons-collections4.version}</version></dependency>
+                    <dependency><groupId>org.apache.commons</groupId><artifactId>commons-lang3</artifactId><version>${commons-lang3.version}</version></dependency>
+                    <dependency><groupId>commons-validator</groupId><artifactId>commons-validator</artifactId><version>${commons-validator.version}</version></dependency>
+                    <dependency><groupId>org.projectlombok</groupId><artifactId>lombok</artifactId><version>${lombok.version}</version></dependency>
+
+                    <!-- @formatter:off -->
+                    <dependency><groupId>com.alibaba</groupId><artifactId>fastjson</artifactId><version>1.2.5</version></dependency>
+                    <dependency><groupId>com.fasterxml</groupId><artifactId>classmate</artifactId><version>${classmate.version}</version></dependency>
+                    <dependency><groupId>com.fasterxml.jackson.module</groupId><artifactId>jackson-module-jaxb-annotations</artifactId><version>${jackson.version}</version></dependency>
+                    <dependency><groupId>com.fatboyindustrial.gson-jodatime-serialisers</groupId><artifactId>gson-jodatime-serialisers</artifactId><version>${gson-jodatime-serialisers.version}</version></dependency>
+                    <!-- see: https://github.com/google/auto/tree/master/value -->
+                    <dependency><groupId>com.google.auto.value</groupId><artifactId>auto-value</artifactId><version>1.2</version></dependency>
+                    <dependency><groupId>com.google.guava</groupId><artifactId>guava</artifactId><version>18.0</version></dependency>
+                    <dependency><groupId>com.ibeetl</groupId><artifactId>beetl</artifactId><version>2.2.7</version></dependency>
+                    <dependency><groupId>com.lmax</groupId><artifactId>disruptor</artifactId><version>${disruptor.version}</version></dependency>
+                    <dependency><groupId>com.zaxxer</groupId><artifactId>HikariCP</artifactId><version>2.4.6</version></dependency>
+                    <dependency><groupId>io.jsonwebtoken</groupId><artifactId>jjwt</artifactId><version>0.7.0</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-bean-validators</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-core</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-data-rest</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-spi</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-staticdocs</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-swagger-common</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-swagger-ui</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-swagger1</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.springfox</groupId><artifactId>springfox-swagger2</artifactId><version>${springfox-swagger.version}</version></dependency>
+                    <dependency><groupId>io.swagger</groupId><artifactId>swagger-annotations</artifactId><version>${swagger.version}</version></dependency>
+                    <dependency><groupId>io.swagger</groupId><artifactId>swagger-models</artifactId><version>${swagger.version}</version></dependency>
+                    <dependency><groupId>ma.glasnost.orika</groupId><artifactId>orika-core</artifactId><version>${orika.version}</version></dependency>
+                    <dependency><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-slf4j-impl</artifactId><version>${log4j2.version}</version></dependency>
+                    <dependency><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-api</artifactId><version>${log4j2.version}</version></dependency>
+                    <dependency><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-core</artifactId><version>${log4j2.version}</version></dependency>
+                    <dependency><groupId>org.apache.logging.log4j</groupId><artifactId>log4j-1.2-api</artifactId><version>${log4j2.version}</version></dependency>
+                    <dependency><groupId>org.apache.zookeeper</groupId><artifactId>zookeeper</artifactId><version>${zookeeper.version}</version></dependency>
+
+                    <!--The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms.
+                    This jar contains JCE provider and lightweight API for the Bouncy Castle Cryptography APIs for JDK 1.5 to JDK 1.8.-->
+                    <dependency><groupId>org.bouncycastle</groupId><artifactId>bcprov-jdk15on</artifactId><version>${bouncycastle.version}</version></dependency>
+                    <!--The Bouncy Castle Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, and certificate generation.
+                    This jar contains APIs for JDK 1.5 to JDK 1.8. The APIs can be used in conjunction with a JCE/JCA provider
+                    such as the one provided with the Bouncy Castle Cryptography APIs.-->
+                    <!--dependency><groupId>org.bouncycastle</groupId><artifactId>bcpkix-jdk15on</artifactId><version>${bouncycastle.version}</version></dependency-->
+                    <!--The Bouncy Castle Crypto package is a Java implementation of cryptographic algorithms.
+                    This jar contains JCE provider and lightweight API for the Bouncy Castle Cryptography APIs for JDK 1.5 to JDK 1.8.
+                    Note: this package includes the NTRU encryption algorithms.-->
+                    <dependency><groupId>org.bouncycastle</groupId><artifactId>bcprov-ext-jdk15on</artifactId><version>${bouncycastle.version}</version></dependency>
+
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-annotations</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-continuation</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-http</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-io</artifactId><version>${jetty.version}</version></dependency>
+                    <!-- jetty-jsp not present in jetty-9.3.x -->
+                    <!--dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-jsp</artifactId><version>${jetty.version}</version></dependency-->
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-plus</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-security</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-server</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-servlet</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-servlets</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-util</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-webapp</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-xml</artifactId><version>${jetty.version}</version></dependency>
+                    <!-- sessionId -->
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-nosql</artifactId><version>${jetty.version}</version></dependency>
+                    <!-- rewrite http to https -->
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-rewrite</artifactId><version>${jetty.version}</version></dependency>
+                    <!-- SPDY ALPN -->
+                    <dependency><groupId>org.eclipse.jetty</groupId><artifactId>jetty-alpn-server</artifactId><version>${jetty.version}</version></dependency>
+                    <!---
+                    must be on JVM boot classpath
+                    Xbootclasspath/p:../libs/org/mortbay/jetty/alpn/alpn-boot/8.1.6.v20151105/alpn-boot-8.1.6.v20151105.jar
+                    -->
+                    <dependency><groupId>org.mortbay.jetty.alpn</groupId><artifactId>alpn-boot</artifactId><version>8.1.6.v20151105</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.alpn</groupId><artifactId>alpn-api</artifactId><version>1.1.2.v20150522</version></dependency>
+                    <dependency><groupId>org.jadira.usertype</groupId><artifactId>usertype.core</artifactId><version>${usertype.version}</version></dependency>
+                    <!--
+                    npn: java.lang.NoSuchMethodError: sun.security.ssl.SSLContextImpl.getSuportedCipherSuiteList()Lsun/security/ssl/CipherSuiteList;
+                    must be on JVM boot classpath
+                    -Xbootclasspath/p:../libs/org/mortbay/jetty/npn/npn-boot/8.1.2.v20120308/npn-boot-8.1.2.v20120308.jar
+                    -->
+                    <dependency><groupId>org.mortbay.jetty.npn</groupId><artifactId>npn-boot</artifactId><version>${jetty-npn.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.npn</groupId><artifactId>npn-api</artifactId><version>${jetty-npn.version}</version></dependency>
+                    <!-- SPDY (before jetty9.3) -->
+                    <!--dependency><groupId>org.eclipse.jetty.spdy</groupId><artifactId>spdy-http-server</artifactId><version>${jetty.version}</version></dependency-->
+                    <!-- HTTP2 (after jetty 9.3) -->
+                    <dependency><groupId>org.eclipse.jetty.http2</groupId><artifactId>http2-server</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>javax-websocket-client-impl</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>javax-websocket-server-impl</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>websocket-api</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>websocket-client</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>websocket-common</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>websocket-server</artifactId><version>${jetty.version}</version></dependency>
+                    <dependency><groupId>org.eclipse.jetty.websocket</groupId><artifactId>websocket-servlet</artifactId><version>${jetty.version}</version></dependency>
+
+                    <!-- see: https://github.com/google/FreeBuilder -->
+                    <dependency><groupId>org.inferred</groupId><artifactId>freebuilder</artifactId><version>1.10.3</version></dependency>
+                    <dependency><groupId>org.javassist</groupId><artifactId>javassist</artifactId><version>${javassist.version}</version></dependency>
+
+                    <dependency><groupId>org.ow2.asm</groupId><artifactId>asm-commons</artifactId><version>${asm.version}</version></dependency>
+                    <dependency><groupId>org.ow2.asm</groupId><artifactId>asm-tree</artifactId><version>${asm.version}</version></dependency>
+                    <dependency><groupId>org.ow2.asm</groupId><artifactId>asm</artifactId><version>${asm.version}</version></dependency>
+
+                    <dependency><groupId>p6spy</groupId><artifactId>p6spy</artifactId><version>${p6spy.version}</version></dependency>
+                    <!-- @formatter:on -->
+                </dependencies>
+            </dependencyManagement>
+        </profile>
+    </profiles>
+</project>

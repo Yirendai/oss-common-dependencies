@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.yirendai.oss</groupId>
+        <artifactId>oss-common-dependencies-spring-boot-1.4.x</artifactId>
+        <version>1.0.8.OSS-SNAPSHOT</version>
+    </parent>
+    <artifactId>oss-common-dependencies-spring-boot-1.4.1.RELEASE</artifactId>
+    <name>oss-common-dependencies-spring-boot-1.4.1.RELEASE</name>
+    <packaging>pom</packaging>
+    <url>
+        https://github.com/Yirendai/oss-common-dependencies/tree/master/oss-common-dependencies-spring-boot-1.4.x/oss-common-dependencies-spring-boot-1.4.1.RELEASE
+    </url>
+
+    <properties>
+        <!-- org.springframework.boot:spring-boot-dependencies -->
+        <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
+        <spring-data-releasetrain.version>Hopper-SR4</spring-data-releasetrain.version>
+        <!-- io.spring.platform:platform-bom -->
+        <spring-io-platform.version>Athens-RELEASE</spring-io-platform.version>
+        <!-- org.springframework.cloud:spring-cloud-starter-parent -->
+        <spring-cloud.version>Camden.SR2</spring-cloud.version>
+
+        <usertype.version>5.0.0.GA</usertype.version>
+
+        <scala-library.version>2.11.7</scala-library.version>
+        <zkclient.version>0.7</zkclient.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency><groupId>org.scala-lang</groupId><artifactId>scala-library</artifactId><version>${scala-library.version}</version></dependency>
+            <dependency><groupId>com.101tec</groupId><artifactId>zkclient</artifactId><version>${zkclient.version}</version></dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
